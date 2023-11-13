@@ -36,6 +36,13 @@ class ToDoApp extends Component {
     });
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return !(
+      this.state.doneTasks == nextState.doneTask &&
+      this.state.tasks == nextState.doneTask
+    );
+  }
+
   render() {
     console.log(this.state.tasks);
     return (
@@ -68,9 +75,13 @@ class ToDoApp extends Component {
           <div className="todo-done">
             {" "}
             {this.state.doneTasks.map((doneTask) => (
-              <li key={doneTask.id}>
-                {doneTask.id} {doneTask.taskValue}{" "}
-              </li>
+              <div key={doneTask.id}>
+                {" "}
+                <li>
+                  {doneTask.id} {doneTask.taskValue}{" "}
+                </li>
+                <button> Remove </button>
+              </div>
             ))}{" "}
           </div>
         </div>
